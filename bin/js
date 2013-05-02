@@ -34,7 +34,7 @@ function start() {
       // ignore
     }
   }
-  
+
   // expose environment variables as globals preceded with $
   for (var name in process.env) {
     var value = process.env[name];
@@ -50,9 +50,9 @@ function start() {
 
     global['$' + name] = value;
   }
-    
+
   var result, output;
-  
+
   try {
     result = output = eval('(' + (program.args.join(' ') || 'undefined') + ')');
   } catch (e) {
@@ -62,7 +62,7 @@ function start() {
       throw e;
     }
   }
-  
+
   if (typeof output == 'string') {
     if (output[output.length - 1] != '\n') {
       output = output + '\n';
@@ -70,7 +70,7 @@ function start() {
   } else {
     try {
       if (program.ugly) {
-        output = JSON.stringify(output) + '\n';        
+        output = JSON.stringify(output) + '\n';
       } else {
         output = JSON.stringify(output, null, 2) + '\n';
       }
@@ -78,10 +78,10 @@ function start() {
       // ignore
     }
   }
-  
+
   if (!program.silent) {
     process.stdout.write(output);
   }
-  
+
   process.exit(result ? 0 : 1);
 }
