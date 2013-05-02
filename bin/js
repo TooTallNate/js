@@ -69,7 +69,9 @@ function start() {
     }
   } else {
     try {
-      if (program.ugly) {
+      if ('function' == typeof output) {
+        output = output.toString() + '\n';
+      } else if (program.ugly) {
         output = JSON.stringify(output) + '\n';
       } else {
         output = JSON.stringify(output, null, 2) + '\n';
