@@ -77,7 +77,7 @@ function start() {
         output = JSON.stringify(output, null, 2) + '\n';
       }
     } catch (e) {
-      // ignore
+      throw e;
     }
   }
 
