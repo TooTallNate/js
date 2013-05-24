@@ -53,13 +53,17 @@ function start() {
 
   var result, output;
 
-  try {
-    result = output = eval('(' + (program.args.join(' ') || 'undefined') + ')');
-  } catch (e) {
-    if (e instanceof SyntaxError) {
-      result = output = eval(program.args.join(' ') || 'undefined');
-    } else {
-      throw e;
+  if (0 == program.args.length) {
+    result = output = stdin;
+  } else {
+    try {
+      result = output = eval('(' + (program.args.join(' ') || 'undefined') + ')');
+    } catch (e) {
+      if (e instanceof SyntaxError) {
+        result = output = eval(program.args.join(' ') || 'undefined');
+      } else {
+        throw e;
+      }
     }
   }
 
