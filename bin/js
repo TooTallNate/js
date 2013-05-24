@@ -3,6 +3,7 @@
 var fs = require('fs');
 var path = require('path');
 var program = require('commander');
+var stringify = require('json-stringify-safe');
 
 program
   .version(JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json'), 'utf-8')).version)
@@ -76,9 +77,9 @@ function start() {
       if ('function' == typeof output) {
         output = output.toString() + '\n';
       } else if (program.ugly) {
-        output = JSON.stringify(output) + '\n';
+        output = stringify(output) + '\n';
       } else {
-        output = JSON.stringify(output, null, 2) + '\n';
+        output = stringify(output, null, 2) + '\n';
       }
     } catch (e) {
       throw e;
